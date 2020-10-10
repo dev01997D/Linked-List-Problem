@@ -20,11 +20,11 @@ public class MyLinkedListTest {
 		linkedListObj.add(secondNode);
 		linkedListObj.add(thirdNode);
 		linkedListObj.printNodes();
-		boolean result = linkedListObj.head.equals(thirdNode) && 
-				         linkedListObj.head.getNext().equals(secondNode) && 
-				         linkedListObj.tail.equals(firstNode);
+		boolean result = linkedListObj.head.equals(thirdNode) && linkedListObj.head.getNext().equals(secondNode)
+				&& linkedListObj.tail.equals(firstNode);
 		Assert.assertTrue(result);
 	}
+
 	@Test
 	public void given3NumbersWhenAddedToLinkedListShouldBeAddedAtLast() {
 		MyNode<Integer> firstNode = new MyNode<>(56);
@@ -36,11 +36,11 @@ public class MyLinkedListTest {
 		linkedListObj.append(secondNode);
 		linkedListObj.append(thirdNode);
 		linkedListObj.printNodes();
-		boolean result = linkedListObj.head.equals(firstNode) && 
-				         linkedListObj.head.getNext().equals(secondNode) &&
-				         linkedListObj.tail.equals(thirdNode);
+		boolean result = linkedListObj.head.equals(firstNode) && linkedListObj.head.getNext().equals(secondNode)
+				&& linkedListObj.tail.equals(thirdNode);
 		Assert.assertTrue(result);
 	}
+
 	@Test
 	public void given3NumbersWhenSecondNumberIsPassedToLinkedListShouldBeInserted() {
 		MyNode<Integer> firstNode = new MyNode<>(56);
@@ -52,11 +52,11 @@ public class MyLinkedListTest {
 		linkedListObj.append(thirdNode);
 		linkedListObj.insert(firstNode, secondNode);
 		linkedListObj.printNodes();
-		boolean result = linkedListObj.head.equals(firstNode) && 
-				         linkedListObj.head.getNext().equals(secondNode) &&
-				         linkedListObj.tail.equals(thirdNode);
+		boolean result = linkedListObj.head.equals(firstNode) && linkedListObj.head.getNext().equals(secondNode)
+				&& linkedListObj.tail.equals(thirdNode);
 		Assert.assertTrue(result);
 	}
+
 	@Test
 	public void givenFirstElementWhenDeletedShouldPassLinkedListResult() {
 		MyNode<Integer> firstNode = new MyNode<>(70);
@@ -71,12 +71,11 @@ public class MyLinkedListTest {
 
 		INode popNode = linkedListObj.pop();
 		System.out.println("Pop operation on : " + popNode.getKey());
-		boolean result = linkedListObj.head.equals(secondNode) && 
-		         linkedListObj.head.getNext().equals(firstNode) && 
-		         linkedListObj.tail.equals(firstNode);
-        Assert.assertTrue(result);
+		boolean result = linkedListObj.head.equals(secondNode) && linkedListObj.head.getNext().equals(firstNode)
+				&& linkedListObj.tail.equals(firstNode);
+		Assert.assertTrue(result);
 	}
-	
+
 	@Test
 	public void givenLastElementWhenDeletedShouldPassLinkedListResult() {
 		MyNode<Integer> firstNode = new MyNode<>(56);
@@ -88,15 +87,14 @@ public class MyLinkedListTest {
 		linkedListObj.append(secondNode);
 		linkedListObj.append(thirdNode);
 		linkedListObj.printNodes();
-		
+
 		INode popLastNode = linkedListObj.popLast();
 		System.out.println("Last Pop operation on : " + popLastNode.getKey());
-		boolean result = linkedListObj.head.equals(firstNode) && 
-		         linkedListObj.head.getNext().equals(secondNode) &&
-		         linkedListObj.tail.equals(secondNode);
-        Assert.assertTrue(result);
+		boolean result = linkedListObj.head.equals(firstNode) && linkedListObj.head.getNext().equals(secondNode)
+				&& linkedListObj.tail.equals(secondNode);
+		Assert.assertTrue(result);
 	}
-	
+
 	@Test
 	public void givenElementWhenSearchedShouldPassLinkedListResult() {
 		MyNode<Integer> firstNode = new MyNode<>(70);
@@ -109,8 +107,12 @@ public class MyLinkedListTest {
 		linkedListObj.add(thirdNode);
 		linkedListObj.printNodes();
 
-		INode searchNode = linkedListObj.search(30);
-		System.out.println("Searched element is : " + searchNode.getKey());
-		Assert.assertEquals("Element not present in linked list", secondNode, searchNode);
+		try {
+			INode searchNode = linkedListObj.search(30);
+			System.out.println("Searched element is : " + searchNode.getKey());
+			Assert.assertEquals(secondNode, searchNode);
+		} catch (NullPointerException e) {
+			System.out.println("Element not present in linked list");
+		}
 	}
 }
