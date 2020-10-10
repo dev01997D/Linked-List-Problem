@@ -1,0 +1,9 @@
+package com.blz.linkedlist.model;
+
+public interface INode<T> {
+	T getKey();
+	void setKey(T key);
+	
+	INode getNext();
+	void setNext(INode<T> next);
+}

@@ -3,14 +3,20 @@
  */
 package com.blz.linkedlistmain.runner;
 
-public class MyNode<T> {
+import com.blz.linkedlist.model.INode;
+
+public class MyNode<T> implements INode<T> {
 	private T key;
-	private MyNode<T> next;
+	private INode<T> next;
 
 	// Parameterized Constructor
 	public MyNode(T key) {
 		this.key = key;
 		this.next = null;
+	}
+
+	public INode<T> getNext() {
+		return next;
 	}
 
 	public T getKey() {
@@ -21,11 +27,9 @@ public class MyNode<T> {
 		this.key = key;
 	}
 
-	public MyNode<T> getNext() {
-		return next;
-	}
-
-	public void setNext(MyNode<T> next) {
+	@Override
+	public void setNext(INode<T> next) {
 		this.next = next;
 	}
+
 }
