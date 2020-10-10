@@ -2,7 +2,7 @@ package com.blz.linkedlist.model;
 
 import com.blz.linkedlistmain.runner.MyNode;
 
-public class MyLinkedList {
+public class MyLinkedList<T> {
 	public INode head;
 	public INode tail;
 
@@ -50,27 +50,43 @@ public class MyLinkedList {
 			tempNode.setNext(myNode);
 		}
 	}
-	
+
 //	Inserting the node between two nodes
 	public void insert(INode myNode, INode newNode) {
-		INode tempNode=myNode.getNext();
+		INode tempNode = myNode.getNext();
 		head.setNext(newNode);
 		newNode.setNext(tempNode);
 	}
 
+	// Pop method to remove first element of Linked List
 	public INode pop() {
-		INode tempNode=this.head;
-		this.head=head.getNext();
+		INode tempNode = this.head;
+		this.head = head.getNext();
 		return tempNode;
 	}
 
+	// PopLast method to remove last element of Linked List
 	public INode popLast() {
-		INode tempNode=head;
-		while(!tempNode.getNext().equals(tail)) {
-			tempNode=tempNode.getNext();
+		INode tempNode = head;
+		while (!tempNode.getNext().equals(tail)) {
+			tempNode = tempNode.getNext();
 		}
-		this.tail=tempNode;
-		tempNode=tempNode.getNext();
+		this.tail = tempNode;
+		tempNode = tempNode.getNext();
 		return tempNode;
+	}
+
+	// Method to search for a key inLinked List
+	public INode search(T key) {
+		INode tempNode = head;
+		while (tempNode != null && tempNode.getNext() != null) {
+			if (tempNode.getKey() == key)
+				break;
+			tempNode = tempNode.getNext();
+		}
+		if (tempNode.getKey() == key)
+			return tempNode;
+		else
+			return null;
 	}
 }

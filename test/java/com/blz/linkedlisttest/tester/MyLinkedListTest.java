@@ -76,6 +76,7 @@ public class MyLinkedListTest {
 		         linkedListObj.tail.equals(firstNode);
         Assert.assertTrue(result);
 	}
+	
 	@Test
 	public void givenLastElementWhenDeletedShouldPassLinkedListResult() {
 		MyNode<Integer> firstNode = new MyNode<>(56);
@@ -94,5 +95,22 @@ public class MyLinkedListTest {
 		         linkedListObj.head.getNext().equals(secondNode) &&
 		         linkedListObj.tail.equals(secondNode);
         Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenElementWhenSearchedShouldPassLinkedListResult() {
+		MyNode<Integer> firstNode = new MyNode<>(70);
+		MyNode<Integer> secondNode = new MyNode<>(30);
+		MyNode<Integer> thirdNode = new MyNode<>(56);
+
+		MyLinkedList linkedListObj = new MyLinkedList();
+		linkedListObj.add(firstNode);
+		linkedListObj.add(secondNode);
+		linkedListObj.add(thirdNode);
+		linkedListObj.printNodes();
+
+		INode searchNode = linkedListObj.search(30);
+		System.out.println("Searched element is : " + searchNode.getKey());
+		Assert.assertEquals("Element not present in linked list", secondNode, searchNode);
 	}
 }
