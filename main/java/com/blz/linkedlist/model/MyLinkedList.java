@@ -39,7 +39,7 @@ public class MyLinkedList {
 	}
 
 	// Appending nodes at last
-	public void append(MyNode myNode) {
+	public void append(INode myNode) {
 		if (this.head == null)
 			this.head = myNode;
 		if (this.tail == null)
@@ -49,5 +49,12 @@ public class MyLinkedList {
 			this.tail = myNode;
 			tempNode.setNext(myNode);
 		}
+	}
+	
+//	Inserting the node between two nodes
+	public void insert(INode myNode, INode newNode) {
+		INode tempNode=myNode.getNext();
+		head.setNext(newNode);
+		newNode.setNext(tempNode);
 	}
 }
