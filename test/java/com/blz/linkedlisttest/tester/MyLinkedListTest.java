@@ -76,4 +76,23 @@ public class MyLinkedListTest {
 		         linkedListObj.tail.equals(firstNode);
         Assert.assertTrue(result);
 	}
+	@Test
+	public void givenLastElementWhenDeletedShouldPassLinkedListResult() {
+		MyNode<Integer> firstNode = new MyNode<>(56);
+		MyNode<Integer> secondNode = new MyNode<>(30);
+		MyNode<Integer> thirdNode = new MyNode<>(70);
+
+		MyLinkedList linkedListObj = new MyLinkedList();
+		linkedListObj.add(firstNode);
+		linkedListObj.append(secondNode);
+		linkedListObj.append(thirdNode);
+		linkedListObj.printNodes();
+		
+		INode popLastNode = linkedListObj.popLast();
+		System.out.println("Last Pop operation on : " + popLastNode.getKey());
+		boolean result = linkedListObj.head.equals(firstNode) && 
+		         linkedListObj.head.getNext().equals(secondNode) &&
+		         linkedListObj.tail.equals(secondNode);
+        Assert.assertTrue(result);
+	}
 }
