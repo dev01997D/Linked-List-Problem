@@ -1,5 +1,7 @@
 package com.blz.linkedlist.model;
 
+import java.util.LinkedList;
+
 import com.blz.linkedlistmain.runner.MyNode;
 
 public class MyLinkedList<T> {
@@ -88,5 +90,22 @@ public class MyLinkedList<T> {
 			return tempNode;
 		else
 			return null;
+	}
+
+	//Method to return size of LinkedList
+	public int sizeOfLinkedList() {
+		int size=0;
+		INode tempNode = this.head;
+		while (tempNode.getNext() != null) { 
+			size++;
+			tempNode = tempNode.getNext();
+		
+		}
+		return size;
+	}
+
+	//Method to remove a given Node from LinkedList
+	public void removeNode(INode myNode, INode deleteNode) {
+		myNode.setNext(deleteNode.getNext());
 	}
 }
