@@ -115,4 +115,27 @@ public class MyLinkedListTest {
 			System.out.println("Element not present in linked list");
 		}
 	}
+
+	@Test
+	public void givenElementWhenInsertedAfterElementShouldPassLinkedListResult() {
+		MyNode<Integer> firstNode = new MyNode<>(56);
+		MyNode<Integer> secondNode = new MyNode<>(30);
+		MyNode<Integer> thirdNode = new MyNode<>(70);
+		MyNode<Integer> insertNode=new MyNode<>(40);
+		MyLinkedList linkedListObj = new MyLinkedList();
+		
+		linkedListObj.add(firstNode);
+		linkedListObj.append(secondNode);
+		linkedListObj.append(thirdNode);
+		try {
+		INode searchNode = linkedListObj.search(30);
+		linkedListObj.insert(searchNode, insertNode);
+		linkedListObj.printNodes();
+		boolean result=secondNode.getNext().equals(insertNode) && insertNode.getNext().equals(thirdNode);
+		Assert.assertTrue(result);
+		}
+		catch(NullPointerException e) {
+			System.out.println("Insertion not happened because, Given key element is not present!");
+		}
+	}
 }
