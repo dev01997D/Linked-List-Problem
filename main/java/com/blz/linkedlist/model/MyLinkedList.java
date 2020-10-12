@@ -92,20 +92,37 @@ public class MyLinkedList<T> {
 			return null;
 	}
 
-	//Method to return size of LinkedList
+	// Method to return size of LinkedList
 	public int sizeOfLinkedList() {
-		int size=0;
+		int size = 0;
 		INode tempNode = this.head;
-		while (tempNode.getNext() != null) { 
+		while (tempNode.getNext() != null) {
 			size++;
 			tempNode = tempNode.getNext();
-		
+
 		}
 		return size;
 	}
 
-	//Method to remove a given Node from LinkedList
+	// Method to remove a given Node from LinkedList
 	public void removeNode(INode myNode, INode deleteNode) {
 		myNode.setNext(deleteNode.getNext());
+	}
+
+	// Method to insert Node in sorted manner
+	public void insertNodeInSort(INode myNode) {
+		INode current = head;
+		INode previous = null;
+		while (current.getNext() != null && (int) current.getKey() < (int) myNode.getKey()) {
+			previous = current;
+			current = current.getNext();
+		}
+		// insertion at beginning of the list
+		if (previous == null) {
+			head = myNode;
+		} else {
+			previous.setNext(current);
+		}
+		current.setNext(myNode);
 	}
 }
