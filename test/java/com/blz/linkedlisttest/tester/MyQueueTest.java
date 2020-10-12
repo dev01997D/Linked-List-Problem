@@ -24,4 +24,18 @@ public class MyQueueTest {
 		System.out.println(myNode.getKey());
 		Assert.assertEquals(thirdNode, myNode);
 	}
+	@Test
+	public void given3NumbersInQueueWhenLastPoppedShouldMatchWithLastAddedNode() {
+		MyQueue myQueue=new MyQueue();
+		MyNode<Integer> firstNode = new MyNode<>(70);
+		MyNode<Integer> secondNode = new MyNode<>(30);
+		MyNode<Integer> thirdNode = new MyNode<>(56);
+		myQueue.enQueue(firstNode);
+		myQueue.enQueue(secondNode);
+		myQueue.enQueue(thirdNode);
+		INode myNode=myQueue.popLast();
+		myQueue.printQueue();
+		System.out.println(myNode.getKey());
+		Assert.assertEquals(thirdNode, myNode);
+	}
 }
