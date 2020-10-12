@@ -15,4 +15,7 @@ public class MyQueue {
 	public INode peak() {
 		return myLinkedList.tail;
 	}
+	public INode popLast() {
+		return myLinkedList.popLast();
+	}
 }
