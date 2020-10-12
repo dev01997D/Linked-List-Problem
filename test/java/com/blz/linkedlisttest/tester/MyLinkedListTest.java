@@ -1,5 +1,7 @@
 package com.blz.linkedlisttest.tester;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -121,21 +123,64 @@ public class MyLinkedListTest {
 		MyNode<Integer> firstNode = new MyNode<>(56);
 		MyNode<Integer> secondNode = new MyNode<>(30);
 		MyNode<Integer> thirdNode = new MyNode<>(70);
-		MyNode<Integer> insertNode=new MyNode<>(40);
+		MyNode<Integer> insertNode = new MyNode<>(40);
 		MyLinkedList linkedListObj = new MyLinkedList();
-		
+
 		linkedListObj.add(firstNode);
 		linkedListObj.append(secondNode);
 		linkedListObj.append(thirdNode);
 		try {
-		INode searchNode = linkedListObj.search(30);
-		linkedListObj.insert(searchNode, insertNode);
-		linkedListObj.printNodes();
-		boolean result=secondNode.getNext().equals(insertNode) && insertNode.getNext().equals(thirdNode);
-		Assert.assertTrue(result);
-		}
-		catch(NullPointerException e) {
+			INode searchNode = linkedListObj.search(30);
+			linkedListObj.insert(searchNode, insertNode);
+			linkedListObj.printNodes();
+			boolean result = secondNode.getNext().equals(insertNode) && insertNode.getNext().equals(thirdNode);
+			Assert.assertTrue(result);
+		} catch (NullPointerException e) {
 			System.out.println("Insertion not happened because, Given key element is not present!");
 		}
+	}
+
+	@Test
+	public void givenElementWhenDeletedAfterElementShouldPassLinkedListResult() {
+		MyNode<Integer> firstNode = new MyNode<>(56);
+		MyNode<Integer> secondNode = new MyNode<>(30);
+		MyNode<Integer> thirdNode = new MyNode<>(70);
+		MyNode<Integer> deleteNode = new MyNode<>(40);
+		MyLinkedList linkedListObj = new MyLinkedList();
+
+		linkedListObj.add(firstNode);
+		linkedListObj.append(secondNode);
+		linkedListObj.append(deleteNode);
+		linkedListObj.append(thirdNode);
+		linkedListObj.printNodes();
+		try {
+			INode searchNode = linkedListObj.search(secondNode.getKey());
+			linkedListObj.removeNode(searchNode, deleteNode);
+			System.out.println("Size of linkedlist after deletion is : " + linkedListObj.sizeOfLinkedList());
+			linkedListObj.printNodes();
+			boolean result = deleteNode.getNext().equals(thirdNode) && secondNode.getNext().equals(thirdNode);
+			Assert.assertTrue(result);
+		} catch (NullPointerException e) {
+			System.out.println("Insertion not happened because, Given key element is not present!");
+		}
+	}
+
+	@Test
+	public void givenElementAddedInSortedShouldPassOrderedLinkedListResult() {
+		MyNode<Integer> firstNode = new MyNode<>(30);
+		MyNode<Integer> secondNode = new MyNode<>(40);
+		MyNode<Integer> fourthNode = new MyNode<>(70);
+		MyNode<Integer> thirdNode = new MyNode<>(56);
+
+		MyLinkedList<Integer> linkedListObj = new MyLinkedList<Integer>();
+		linkedListObj.insert(firstNode.getKey());
+		linkedListObj.insert(fourthNode.getKey());
+		linkedListObj.insert(thirdNode.getKey());
+		linkedListObj.insert(secondNode.getKey());
+
+		linkedListObj.printNodes();
+		assertEquals(linkedListObj.head.getKey(), firstNode.getKey());
+		boolean result = firstNode.getKey() <= secondNode.getKey() && secondNode.getKey() <= thirdNode.getKey();
+		Assert.assertTrue(result);
 	}
 }

@@ -1,5 +1,7 @@
 package com.blz.linkedlist.model;
 
+import java.util.LinkedList;
+
 import com.blz.linkedlistmain.runner.MyNode;
 
 public class MyLinkedList<T> {
@@ -88,5 +90,40 @@ public class MyLinkedList<T> {
 			return tempNode;
 		else
 			return null;
+	}
+
+	// Method to return size of LinkedList
+	public int sizeOfLinkedList() {
+		int size = 0;
+		INode tempNode = this.head;
+		while (tempNode.getNext() != null) {
+			size++;
+			tempNode = tempNode.getNext();
+
+		}
+		return size;
+	}
+
+	// Method to remove a given Node from LinkedList
+	public void removeNode(INode myNode, INode deleteNode) {
+		myNode.setNext(deleteNode.getNext());
+	}
+
+	// ADDING NEW NODE INTO THE LIST IN SORTED ORDER
+	public <T extends Comparable<T>> void insert(T key) {
+		MyNode newNode = new MyNode(key);
+		INode<T> current = head;
+		INode previous = null;
+		while (current != null && key.compareTo(current.getKey()) > 0) {
+			previous = current;
+			current = current.getNext();
+		}
+		// insertion at beginning of the list
+		if (previous == null) {
+			head = newNode;
+		} else {
+			previous.setNext(newNode);
+		}
+		newNode.setNext(current);
 	}
 }
