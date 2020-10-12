@@ -1,5 +1,7 @@
 package com.blz.linkedlisttest.tester;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -161,5 +163,24 @@ public class MyLinkedListTest {
 		} catch (NullPointerException e) {
 			System.out.println("Insertion not happened because, Given key element is not present!");
 		}
+	}
+
+	@Test
+	public void givenElementAddedInSortedShouldPassOrderedLinkedListResult() {
+		MyNode<Integer> firstNode = new MyNode<>(30);
+		MyNode<Integer> secondNode = new MyNode<>(40);
+		MyNode<Integer> fourthNode = new MyNode<>(70);
+		MyNode<Integer> thirdNode = new MyNode<>(56);
+
+		MyLinkedList<Integer> linkedListObj = new MyLinkedList<Integer>();
+		linkedListObj.insert(firstNode.getKey());
+		linkedListObj.insert(fourthNode.getKey());
+		linkedListObj.insert(thirdNode.getKey());
+		linkedListObj.insert(secondNode.getKey());
+
+		linkedListObj.printNodes();
+		assertEquals(linkedListObj.head.getKey(), firstNode.getKey());
+		boolean result = firstNode.getKey() <= secondNode.getKey() && secondNode.getKey() <= thirdNode.getKey();
+		Assert.assertTrue(result);
 	}
 }

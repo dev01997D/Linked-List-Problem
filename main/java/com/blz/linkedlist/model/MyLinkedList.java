@@ -109,20 +109,21 @@ public class MyLinkedList<T> {
 		myNode.setNext(deleteNode.getNext());
 	}
 
-	// Method to insert Node in sorted manner
-	public void insertNodeInSort(INode myNode) {
-		INode current = head;
+	// ADDING NEW NODE INTO THE LIST IN SORTED ORDER
+	public <T extends Comparable<T>> void insert(T key) {
+		MyNode newNode = new MyNode(key);
+		INode<T> current = head;
 		INode previous = null;
-		while (current.getNext() != null && (int) current.getKey() < (int) myNode.getKey()) {
+		while (current != null && key.compareTo(current.getKey()) > 0) {
 			previous = current;
 			current = current.getNext();
 		}
 		// insertion at beginning of the list
 		if (previous == null) {
-			head = myNode;
+			head = newNode;
 		} else {
-			previous.setNext(current);
+			previous.setNext(newNode);
 		}
-		current.setNext(myNode);
+		newNode.setNext(current);
 	}
 }
