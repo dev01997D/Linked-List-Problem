@@ -41,19 +41,18 @@ public class MyLinkedList<K> {
 	}
 
 	// Appending nodes at last
-	public void append(INode myNode) {
+	public void append(INode<K> myNode) {
 		if (this.head == null)
 			this.head = myNode;
 		if (this.tail == null)
 			this.tail = myNode;
 		else {
-			INode tempNode = this.tail;
+			this.tail.setNext(myNode);
 			this.tail = myNode;
-			tempNode.setNext(myNode);
 		}
 	}
 
-	//	Inserting the node between two nodes
+	// Inserting the node between two nodes
 	public void insert(INode myNode, INode newNode) {
 		INode tempNode = myNode.getNext();
 		myNode.setNext(newNode);
