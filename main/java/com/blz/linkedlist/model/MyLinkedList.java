@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import com.blz.linkedlistmain.runner.MyNode;
 
-public class MyLinkedList<T> {
+public class MyLinkedList<K> {
 	public INode head;
 	public INode tail;
 
@@ -53,11 +53,23 @@ public class MyLinkedList<T> {
 		}
 	}
 
-//	Inserting the node between two nodes
+	//	Inserting the node between two nodes
 	public void insert(INode myNode, INode newNode) {
 		INode tempNode = myNode.getNext();
 		myNode.setNext(newNode);
 		newNode.setNext(tempNode);
+	}
+
+	// Method to search for a key inLinked List
+	public INode search(K key) {
+		INode tempNode = head;
+		while (tempNode != null && tempNode.getNext() != null) {
+			if (tempNode.getKey().equals(key))
+				return tempNode;
+			else
+				tempNode = tempNode.getNext();
+		}
+		return null;
 	}
 
 	// Pop method to remove first element of Linked List
@@ -76,20 +88,6 @@ public class MyLinkedList<T> {
 		this.tail = tempNode;
 		tempNode = tempNode.getNext();
 		return tempNode;
-	}
-
-	// Method to search for a key inLinked List
-	public INode search(T key) {
-		INode tempNode = head;
-		while (tempNode != null && tempNode.getNext() != null) {
-			if (tempNode.getKey() == key)
-				break;
-			tempNode = tempNode.getNext();
-		}
-		if (tempNode.getKey() == key)
-			return tempNode;
-		else
-			return null;
 	}
 
 	// Method to return size of LinkedList
@@ -125,5 +123,10 @@ public class MyLinkedList<T> {
 			previous.setNext(newNode);
 		}
 		newNode.setNext(current);
+	}
+
+	@Override
+	public String toString() {
+		return "MyLinkedListNodes {head=" + head + "}";
 	}
 }
